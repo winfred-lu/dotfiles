@@ -1,0 +1,13 @@
+$include /etc/inputrc
+
+set colored-status On
+set visible-status On
+
+set bell-style visible
+
+# Remap ESC to use my 'kj' keypress to return to movement mode
+$if mode=vi
+    set keymap-vi-insert
+    "kj": vi-movement-mode
+$endif
+

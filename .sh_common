@@ -1,0 +1,62 @@
+# -*- mode: sh -*-
+
+export PATH="$PATH:/sbin:/usr/sbin:"
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin"
+export PATH="$PATH:/usr/lib/cargo/bin"
+export PATH="$PATH:/usr/local/nvim-linux64/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin:./"
+
+export EDITOR="vim"
+export ALTERNATE_EDITOR=""    # for emacsclient
+export PAGER="less"
+export LESS="-FRX"
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF8"
+
+export CVS_RSH="ssh"
+export MINICOM='-c on'
+
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
+
+case $TTY in
+/dev/pts*)
+    if [[ -n $TMUX ]]; then
+        export TERM=tmux-256color
+    else
+        export TERM=rxvt-unicode-256color
+    fi
+    ;;
+*)
+    uname=`uname`
+    if [[ $uname[1,6] = "CYGWIN" ]]; then
+        export TERM=rxvt-256color
+    else
+        export TERM=xterm-256color
+    fi
+    ;;
+esac
+
+
+# colored less
+export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\E[0m'           # end mode
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\E[38;5;120m'    # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+
+
+alias b=exit
+alias e="emacsclient -nw"
+alias E='SUDO_EDITOR="emacsclient -t -a emacs" sudoedit'
+alias grep='grep -I -n --color --exclude=tags --exclude=cscope.out --exclude=cscope.files --exclude=.#*'
+alias ls='ls -F --color=auto'
+alias vi=vim
+alias n="nvim"
+alias N='SUDO_EDITOR="nvim" sudoedit'
+alias gencs='find . -type f -name "*.[chxsS]" -o -name "*.cpp" >! cscope.files; cscope -b -k; ctags -R -n -e'
+alias genarcs='find . -type f -regextype posix-egrep -regex ".*\.(cpp|pde|ino|h)$" >! cscope.files; cscope -b -k; ctags -R -n -e'
+

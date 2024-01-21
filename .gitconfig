@@ -1,0 +1,45 @@
+[user]
+	name = Winfred Lu
+	email = winfred.lu@gmail.com
+
+[core]
+	excludesfile = ~/.gitignore
+	autocrlf = false
+	safecrlf = warn
+	whitespace = blank-at-eol,blank-at-eof,space-before-tab
+
+[color]
+	ui = auto
+    branch = auto
+    diff = auto
+    grep = auto
+    interactive = auto
+    status = auto
+
+[alias]
+	br = branch
+	co = checkout
+	ci = commit
+	di = diff
+	dc = diff --cached
+	ds = diff --stat -r
+	ls = ls-files
+	st = status
+	gh = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+[commit]
+    verbose = true
+    template = ~/.gitmessage
+
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+
+[push]
+	default = simple
+
+[rebase]
+    autoStash = true
+
+[credential]
+	helper = cache

@@ -1,0 +1,101 @@
+# -*- mode: sh -*-
+
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _ignored
+zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' ignore-parents parent pwd .. directory
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+zstyle :compinstall filename '/home/winfred/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# history
+HISTFILE=~/.history
+HISTSIZE=3000
+SAVEHIST=6000
+export HISTORY_IGNORE="(ls*|b|exit|clear|cd|cd -|cd ..)"
+setopt INC_APPEND_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS
+
+# key bindings
+bindkey -v
+bindkey -M viins 'kj' vi-cmd-mode
+bindkey '^R' history-incremental-search-backward
+bindkey "\e[3~" delete-char
+bindkey '\e[C' forward-char
+bindkey '\e[D' backward-char
+bindkey '\e^?' backward-delete-word
+bindkey -s '\eu' 'cd ..^M'
+bindkey -s '\ep' 'dirs -v^M'
+
+stty -ixon
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt CORRECT
+setopt CORRECTALL
+setopt NO_FLOW_CONTROL
+setopt NO_CLOBBER
+setopt RM_STAR_WAIT
+set ignoreeof on
+
+# customized grep options
+GREP_OPTIONS="-I --color=auto"
+GREP_OPTIONS+=" --exclude=tags --exclude=TAGS --exclude=cscope.\*"
+grep-flag-available() {
+    echo | grep $1 "" >/dev/null 2>&1
+}
+if grep-flag-available --exclude-dir=.cvs; then
+    for PATTERN in .cvs .git .hg .svn; do
+        GREP_OPTIONS+=" --exclude-dir=$PATTERN"
+    done
+elif grep-flag-available --exclude=.cvs; then
+    for PATTERN in .cvs .git .hg .svn; do
+        GREP_OPTIONS+=" --exclude=$PATTERN"
+    done
+fi
+unfunction grep-flag-available
+
+# alias grep since GREP_OPTIONS is deprecated
+alias grep="grep $GREP_OPTIONS"
+
+# prompt
+PROMPT='%F{5}%m %F{6}%~ %(!.%F{1}.%f)%#%f '
+setopt prompt_subst
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+zstyle ':vcs_info:*' formats       '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+zstyle ':vcs_info:cvs:*' formats   '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%r%F{5}]%f '
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+zstyle ':vcs_info:*' enable git cvs svn
+vcs_info_wrapper() {
+  vcs_info
+  if [ -n "$vcs_info_msg_0_" ]; then
+    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
+  fi
+}
+RPROMPT=$'$(vcs_info_wrapper)'
+
+autoload run-help
+bindkey '\eh' run-help
+
+# command-line fuzzy finder
+export FZF_DEFAULT_COMMAND='fd'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND -t f"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -t d"
+
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
+if [ -f ~/.sh_common ]; then
+    source ~/.sh_common
+fi
+
