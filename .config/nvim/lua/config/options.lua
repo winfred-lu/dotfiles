@@ -2,7 +2,7 @@ vim.g.mapleader = ","
 vim.g.mapllocaleader = " "
 
 vim.opt.laststatus = 0
-vim.opt.iskeyword:append('-')
+--vim.opt.iskeyword:append('-')
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
