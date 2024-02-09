@@ -1,7 +1,13 @@
 # -*- mode: sh -*-
 
-# The following lines were added by compinstall
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
+# The following lines were added by compinstall
 zstyle ':completion:*' completer _complete _ignored
 zstyle ':completion:*' expand prefix suffix
 zstyle ':completion:*' ignore-parents parent pwd .. directory
@@ -67,7 +73,7 @@ unfunction grep-flag-available
 # alias grep since GREP_OPTIONS is deprecated
 alias grep="grep $GREP_OPTIONS"
 
-# prompt
+# prompt (overwitten by powerlevel10k theme)
 PROMPT='%F{5}%m %F{6}%~ %(!.%F{1}.%f)%#%f '
 setopt prompt_subst
 autoload -Uz vcs_info
@@ -99,3 +105,8 @@ if [ -f ~/.sh_common ]; then
     source ~/.sh_common
 fi
 
+# required to install powerlevel10k zsh theme in advance
+[[ ! -f ~/powerlevel10k.zsh-theme ]] || source ~/powerlevel10k.zsh-theme
+
+# powerlevel10k theme customizations
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
