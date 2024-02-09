@@ -37,7 +37,7 @@ bindkey '\e^?' backward-delete-word
 bindkey -s '\eu' 'cd ..^M'
 bindkey -s '\ep' 'dirs -v^M'
 
-stty -ixon
+[[ -o login ]] && stty -ixon
 setopt AUTO_CD
 setopt AUTO_PUSHD
 setopt CORRECT

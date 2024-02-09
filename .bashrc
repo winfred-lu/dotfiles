@@ -109,7 +109,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-stty -ixon
+[[ $- == *i* ]] && stty -ixon
 set -o vi
 
 # command-line fuzzy finder
