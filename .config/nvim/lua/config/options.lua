@@ -1,6 +1,11 @@
 vim.g.mapleader = ","
 vim.g.mapllocaleader = " "
 
+-- for netrw-gx under Windows and WSL
+if IS_WINDOWS or IS_WSL then
+  vim.g.netrw_browsex_viewer = "cmd.exe /C start"
+end
+
 vim.opt.laststatus = 0
 --vim.opt.iskeyword:append('-')
 
