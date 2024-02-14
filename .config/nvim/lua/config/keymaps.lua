@@ -38,8 +38,3 @@ vim.keymap.set('n', '<leader>gr', function() toggle_opt("relativenumber") end)
 vim.keymap.set('n', '<leader>gs', function() toggle_opt("spell") end)
 vim.keymap.set('n', '<leader>gw', function() toggle_opt("wrap") end)
 
--- navigation anywhere
---vim.keymap.set('n', '<leader>l', '<cmd>HopLine<CR>')
---vim.keymap.set('n', '<leader>w', '<cmd>HopWord<CR>')
---vim.keymap.set('n', '<leader>t', "<cmd>HopChar2<CR>")
-
