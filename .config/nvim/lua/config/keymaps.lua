@@ -8,6 +8,10 @@ vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'gk', 'k')
 vim.keymap.set('n', 'k', 'gk')
 
+-- navigation in quickfix
+vim.keymap.set("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
+vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
+
 -- navigation in insert mode
 vim.keymap.set('i', '<Up>', '<C-o>gk')
 vim.keymap.set('i', '<Down>', '<C-o>gj')
