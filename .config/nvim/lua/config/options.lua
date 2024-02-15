@@ -33,3 +33,6 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false
 
+vim.opt.conceallevel = 2 -- for orgmode to concel links
+vim.opt.concealcursor = 'nc'
+
