@@ -33,7 +33,7 @@ vim.keymap.set('n', '<leader>bb', '<cmd>e#<CR>', { desc = "Edit alternate file" 
 
 -- toggle options
 local function toggle_opt(option)
-  vim.opt[option] = not vim.opt[option]:get()
+  vim.opt_local[option] = not vim.opt_local[option]:get()
 end
 vim.keymap.set('n', '<leader>gc', function() toggle_opt("cursorline") end)
 vim.keymap.set('n', '<leader>gl', function() toggle_opt("list") end)
