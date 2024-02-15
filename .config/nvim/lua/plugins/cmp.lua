@@ -63,6 +63,7 @@ local M = {
         { name = "luasnip" },
         { name = "path" },
         { name = "buffer" },
+        { name = "orgmode" },
       },
       window = {
         completion = cmp.config.window.bordered(),
