@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 -- kj to escape insert mode 
 vim.keymap.set('i', 'kj', '<Esc>')
 vim.keymap.set('v', 'kj', '<Esc>')
@@ -32,13 +34,13 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 vim.keymap.set('n', '<leader>bb', '<cmd>e#<CR>', { desc = "Edit alternate file" })
 
 -- toggle options
-local function toggle_opt(option)
-  vim.opt_local[option] = not vim.opt_local[option]:get()
-end
-vim.keymap.set('n', '<leader>gc', function() toggle_opt("cursorline") end)
-vim.keymap.set('n', '<leader>gl', function() toggle_opt("list") end)
-vim.keymap.set('n', '<leader>gn', function() toggle_opt("number") end)
-vim.keymap.set('n', '<leader>gr', function() toggle_opt("relativenumber") end)
-vim.keymap.set('n', '<leader>gs', function() toggle_opt("spell") end)
-vim.keymap.set('n', '<leader>gw', function() toggle_opt("wrap") end)
+vim.keymap.set('n', '<leader>gc', function() utils.toggle("cursorline") end)
+vim.keymap.set('n', '<leader>gl', function() utils.toggle("list") end)
+vim.keymap.set('n', '<leader>gn', function() utils.toggle("number") end)
+vim.keymap.set('n', '<leader>gr', function() utils.toggle("relativenumber") end)
+vim.keymap.set('n', '<leader>gs', function() utils.toggle("spell") end)
+vim.keymap.set('n', '<leader>gw', function() utils.toggle("wrap") end)
+vim.keymap.set('n', '<leader>ga', utils.toggle_laststatus)
+vim.keymap.set('n', '<leader>gm', utils.toggle_cmdheight)
+vim.keymap.set('n', '<leader>go', utils.toggle_conceallevel)
 
