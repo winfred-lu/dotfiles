@@ -12,7 +12,7 @@ return {
     cmd = "Git",
   },
   {
-    'vimpostor/vim-tpipeline',
+    --'vimpostor/vim-tpipeline',
   },
 }
 
