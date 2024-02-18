@@ -6,6 +6,8 @@ if IS_WINDOWS or IS_WSL then
   vim.g.netrw_browsex_viewer = "cmd.exe /C start"
 end
 
+vim.opt.mousemodel = "popup"
+
 vim.opt.laststatus = 0
 --vim.opt.iskeyword:append('-')
 
