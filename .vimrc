@@ -23,7 +23,11 @@ Plugin 'romainl/Vim-cool'
 Plugin 'junegunn/fzf.vim'
 call vundle#end()
 filetype plugin indent on
-source /usr/share/doc/fzf/examples/fzf.vim
+if filereadable("/usr/share/doc/fzf/examples/fzf.vim")
+  source /usr/share/doc/fzf/examples/fzf.vim
+elseif filereadable("/usr/share/nvim/runtime/plugin/fzf.vim")
+  source /usr/share/nvim/runtime/plugin/fzf.vim
+endif
 " }}}
 
 " General {{{

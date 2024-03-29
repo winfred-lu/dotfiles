@@ -28,7 +28,7 @@ shopt -s checkwinsize
 #shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -102,11 +102,11 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 
 [[ $- == *i* ]] && stty -ixon
@@ -117,8 +117,16 @@ export FZF_DEFAULT_COMMAND='fd'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND -t f"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -t d"
 
-source /usr/share/doc/fzf/examples/key-bindings.bash
-source /usr/share/doc/fzf/examples/completion.bash
+case $(lsb_release -si) in
+Ubuntu)
+    . /usr/share/doc/fzf/examples/key-bindings.bash
+    . /usr/share/doc/fzf/examples/completion.bash
+    ;;
+Gentoo)
+    . /usr/share/fzf/key-bindings.bash
+    . /usr/share/bash-completion/completions/fzf
+    ;;
+esac
 
 if [ -f ~/.sh_common ]; then
     . ~/.sh_common

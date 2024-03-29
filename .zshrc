@@ -98,8 +98,16 @@ export FZF_DEFAULT_COMMAND='fd'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND -t f"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -t d"
 
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+case $(lsb_release -si) in
+Ubuntu)
+    . /usr/share/doc/fzf/examples/key-bindings.zsh
+    . /usr/share/doc/fzf/examples/completion.zsh
+    ;;
+Gentoo)
+    . /usr/share/fzf/key-bindings.zsh
+    . /usr/share/zsh/site-functions/_fzf
+    ;;
+esac
 
 if [ -f ~/.sh_common ]; then
     source ~/.sh_common
