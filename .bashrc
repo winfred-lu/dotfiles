@@ -113,7 +113,6 @@ fi
 set -o vi
 
 GRC_ALIASES=true
-[[ -s "etcj"]]
 
 # command-line fuzzy finder
 export FZF_DEFAULT_COMMAND='fd'
@@ -132,6 +131,8 @@ Gentoo)
     [[ -s "/usr/share/grc/grc.sh" ]] && source /usr/share/grc/grc.sh
     ;;
 esac
+
+export GPG_TTY="$( tty )"
 
 if [ -f ~/.sh_common ]; then
     . ~/.sh_common

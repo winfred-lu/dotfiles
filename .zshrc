@@ -1,4 +1,5 @@
 # -*- mode: sh -*-
+export GPG_TTY=$(tty)
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -102,7 +103,7 @@ case $(lsb_release -si) in
 Ubuntu)
     [[ -s "/usr/share/doc/fzf/examples/key-bindings.zsh" ]] && source /usr/share/doc/fzf/examples/key-bindings.zsh
     [[ -s "/usr/share/doc/fzf/examples/completion.zsh" ]] && source /usr/share/doc/fzf/examples/completion.zsh
-    [[ -s "/etc/profile.d/grc.sh" ]] && source /etc/profile.d/grc.sh
+    [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
     ;;
 Gentoo)
     [[ -s "/usr/share/fzf/key-bindings.zsh" ]] && source /usr/share/fzf/key-bindings.zsh
