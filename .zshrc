@@ -100,12 +100,14 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -t d"
 
 case $(lsb_release -si) in
 Ubuntu)
-    . /usr/share/doc/fzf/examples/key-bindings.zsh
-    . /usr/share/doc/fzf/examples/completion.zsh
+    [[ -s "/usr/share/doc/fzf/examples/key-bindings.zsh" ]] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+    [[ -s "/usr/share/doc/fzf/examples/completion.zsh" ]] && source /usr/share/doc/fzf/examples/completion.zsh
+    [[ -s "/etc/profile.d/grc.sh" ]] && source /etc/profile.d/grc.sh
     ;;
 Gentoo)
-    . /usr/share/fzf/key-bindings.zsh
-    . /usr/share/zsh/site-functions/_fzf
+    [[ -s "/usr/share/fzf/key-bindings.zsh" ]] && source /usr/share/fzf/key-bindings.zsh
+    [[ -s "/usr/share/zsh/site-functions/_fzf" ]] && source /usr/share/zsh/site-functions/_fzf
+    [[ -s "/usr/share/grc/grc.zsh" ]] && source /usr/share/grc/grc.zsh
     ;;
 esac
 

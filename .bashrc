@@ -112,6 +112,9 @@ fi
 [[ $- == *i* ]] && stty -ixon
 set -o vi
 
+GRC_ALIASES=true
+[[ -s "etcj"]]
+
 # command-line fuzzy finder
 export FZF_DEFAULT_COMMAND='fd'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND -t f"
@@ -119,12 +122,14 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND -t d"
 
 case $(lsb_release -si) in
 Ubuntu)
-    . /usr/share/doc/fzf/examples/key-bindings.bash
-    . /usr/share/doc/fzf/examples/completion.bash
+    [[ -s "/usr/share/doc/fzf/examples/key-bindings.bash" ]] && source /usr/share/doc/fzf/examples/key-bindings.bash
+    [[ -s "/usr/share/doc/fzf/examples/completion.bash" ]] && source /usr/share/doc/fzf/examples/completion.bash
+    [[ -s "/etc/profile.d/grc.sh" ]] && source /etc/profile.d/grc.sh
     ;;
 Gentoo)
-    . /usr/share/fzf/key-bindings.bash
-    . /usr/share/bash-completion/completions/fzf
+    [[ -s "/usr/share/fzf/key-bindings.bash" ]] && source /usr/share/fzf/key-bindings.bash
+    [[ -s "/usr/share/bash-completion/completions/fzf" ]] && soure /usr/share/bash-completion/completions/fzf
+    [[ -s "/usr/share/grc/grc.sh" ]] && source /usr/share/grc/grc.sh
     ;;
 esac
 
