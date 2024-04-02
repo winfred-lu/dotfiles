@@ -52,7 +52,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 alias b=exit
 alias e="emacsclient -nw"
 alias E='SUDO_EDITOR="emacsclient -t -a emacs" sudoedit'
-alias grep='grep -I -n --color --exclude=tags --exclude=cscope.out --exclude=cscope.files --exclude=.#*'
+alias grep="grep -I -n --color --exclude=tags --exclude=cscope.out --exclude=cscope.files --exclude-dir='.*'"
 alias ls='ls -F --color=auto'
 alias vi=vim
 alias n="nvim"
