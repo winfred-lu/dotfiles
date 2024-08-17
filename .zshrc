@@ -54,26 +54,6 @@ setopt NO_CLOBBER
 setopt RM_STAR_WAIT
 set ignoreeof on
 
-# customized grep options
-GREP_OPTIONS="-I --color=auto"
-GREP_OPTIONS+=" --exclude=tags --exclude=TAGS --exclude=cscope.\*"
-grep-flag-available() {
-    echo | grep $1 "" >/dev/null 2>&1
-}
-if grep-flag-available --exclude-dir=.cvs; then
-    for PATTERN in .cvs .git .hg .svn; do
-        GREP_OPTIONS+=" --exclude-dir=$PATTERN"
-    done
-elif grep-flag-available --exclude=.cvs; then
-    for PATTERN in .cvs .git .hg .svn; do
-        GREP_OPTIONS+=" --exclude=$PATTERN"
-    done
-fi
-unfunction grep-flag-available
-
-# alias grep since GREP_OPTIONS is deprecated
-alias grep="grep $GREP_OPTIONS"
-
 # prompt (overwitten by powerlevel10k theme)
 PROMPT='%F{5}%m %F{6}%~ %(!.%F{1}.%f)%#%f '
 setopt prompt_subst

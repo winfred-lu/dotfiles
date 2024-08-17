@@ -52,11 +52,31 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 alias b=exit
 alias e="emacsclient -nw"
 alias E='SUDO_EDITOR="emacsclient -t -a emacs" sudoedit'
-alias grep="grep -I -n --color --exclude=tags --exclude=cscope.out --exclude=cscope.files --exclude-dir='.*'"
 alias ls='ls -F --color=auto'
 alias vi=vim
 alias n="nvim"
 alias N='SUDO_EDITOR="nvim" sudoedit'
 alias gencs='find . -type f -name "*.[chxsS]" -o -name "*.cpp" >! cscope.files; cscope -b -k; ctags -R -n -e'
 alias genarcs='find . -type f -regextype posix-egrep -regex ".*\.(cpp|pde|ino|h)$" >! cscope.files; cscope -b -k; ctags -R -n -e'
+
+
+# customized grep options
+GREP_OPTIONS="-I -n --color=auto"
+GREP_OPTIONS+=" --exclude=tags --exclude=TAGS --exclude=cscope.\*"
+grep-flag-available() {
+    echo | grep $1 "" >/dev/null 2>&1
+}
+if grep-flag-available --exclude-dir=.cvs; then
+    for PATTERN in .cvs .git .hg .svn; do
+        GREP_OPTIONS+=" --exclude-dir=$PATTERN"
+    done
+elif grep-flag-available --exclude=.cvs; then
+    for PATTERN in .cvs .git .hg .svn; do
+        GREP_OPTIONS+=" --exclude=$PATTERN"
+    done
+fi
+unfunction grep-flag-available
+
+# alias grep since GREP_OPTIONS is deprecated
+alias grep="grep $GREP_OPTIONS"
 
