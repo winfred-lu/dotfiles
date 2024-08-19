@@ -1,13 +1,15 @@
 $include /etc/inputrc
 
-set colored-status On
-set visible-status On
+#$if Bash
+    set colored-stats On
+    set visible-stats On
+#$endif
 
 set bell-style visible
 
 # Remap ESC to use my 'kj' keypress to return to movement mode
 $if mode=vi
-    set keymap-vi-insert
+    set keymap vi-insert
     "kj": vi-movement-mode
 $endif
 
