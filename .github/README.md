@@ -1,54 +1,94 @@
-dotfiles
-========
+# :house: Dotfiles
 
-Yet another dotfiles repository. Use [yadm] to manage.
+## :information_source: About
 
-Usage
------
+Yet another dotfiles repository.
+Use [yadm] (Yet Another Dotfiles Manager) to manage.
 
-1. Install [yadm] package or download from [github/yadm]
+## :floppy_disk: Usage
 
+:one: Install [yadm] package or download from [github/yadm] manually
+
+* Debian/Ubuntu
 ```sh
 sudo apt install yadm
 ```
 
-Or
+* Gentoo
+```sh
+sudo emerge --ask app-admin/yadm
+```
 
+* Manual
 ```sh
 mkdir ~/bin
 curl ~/bin/yadm https://github.com/TheLocehiliosan/yadm/raw/master/yadm
 chmod a+x ~/bin/yadm
 ```
 
-2. Clone
+:two: Clone
+
 ```sh
 yadm clone https://github.com/winfred-lu/dotfiles.git
 ```
 
-3. Bootstrap
+The clone command may result in warnings due to the existing dotfiles. Force overwrite with the following commands.
+```sh
+yadm fetch --all
+yadm reset --hard origin/master
+```
+
+:three: Bootstrap
+
 ```sh
 yadm bootstrap
 ```
 
-Features
---------
+## :star: Features
 
-### shell configuration
-  * bash
-  * zsh
-  * tmux
+### :package: Applications
 
-### vim configuration
+* [git](https://git-scm.com): Version control system
+* [bash](https://www.gnu.org/software/bash/): Shell
+* [zsh](http://zsh.sourceforge.net/Intro/intro_1.html): Shell
+* [vim](https://github.com/vim/vim): Terminal text editor
+* [neovim](https://neovim.io/): Terminal text editor
+* [screen](https://github.com/vim/vim): Terminal multiplexer
+* [tmux](https://github.com/vim/vim): Terminal multiplexer
+* [fd](https://github.com/sharkdp/fd): Replacement for find
+* [fzf](https://github.com/junegunn/fzf): Command-line fuzzy finder
+* [ripgrep](https://github.com/BurntSushi/ripgrep): Replacement for grep
 
-  * vim plugins are managed with Vundle
+
+#### :shell: Shell configuration
+  * TBC
+
+#### :pencil: Vim
+
+  * vim plugins are managed with [Vundle]
   * nvim plugins are managed with [lazy-nvim]
 
-### TODO
+### :boot: Bootstrap
+
+[yadm] has a built-in [**bootstrap**](https://yadm.io/docs/bootstrap) feature which enables further configuration of dotfiles.
+
+* Bootstrap zsh
+* Bootstrap vim and nvim
+  * Automatically install vim and nvim plugins.
+
+### :construction: TODO
 
   * X configuration
 
+  * to be deleted reference: https://github.com/pwyde/dotfiles
+
+
+## :page_with_curl: License
+
+Dotfiles is public under the [MIT license](LICENSE).
+
 
 [yadm]: https://yadm.io/
-[Vundle.vim]: https://github.com/VundleVim/Vundle.vim
+[Vundle]: https://github.com/VundleVim/Vundle.vim
 [github/yadm]: https://github.com/TheLocehiliosan/yadm
 [lazy-nvim]: https://github.com/folke/lazy.nvim
