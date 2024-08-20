@@ -1,7 +1,22 @@
+#!/bin/bash
+
 configure_vim() {
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    vim +'PluginInstall --sync' +qall
+    vim -E -s -u ~/.vimrc +PluginInstall +qall
+}
+
+configure_zsh() {
+    git clone https://github.com/romkatv/powerlevel10k.git ~/src/powerlevel10k
+    ln -s ~/src/powerlevel10k/powerlevel10k.zsh-theme
+}
+
+yadm_sparse_checkout() {
+    # sparse checkout to hide LICENSE under root folder
+    yadm submodule update --recursive --init
+    yadm gitconfig core.sparseCheckout true
+    yadm sparse-checkout set '/*' '!LICENSE'
 }
 
 configure_vim
-
+configure_zsh
+yadm_sparse_checkout
