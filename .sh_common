@@ -1,4 +1,5 @@
 # -*- mode: sh -*-
+# vim: filetype=sh
 
 export PATH="$PATH:/sbin:/usr/sbin:"
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin"
@@ -79,4 +80,8 @@ unfunction grep-flag-available
 
 # alias grep since GREP_OPTIONS is deprecated
 alias grep="grep $GREP_OPTIONS"
+
+
+# company specific settings
+[[ -s ~/.company.conf ]] && source ~/.company.conf
 
