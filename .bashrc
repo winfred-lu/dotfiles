@@ -134,7 +134,6 @@ esac
 
 export GPG_TTY="$( tty )"
 
-if [ -f ~/.sh_common ]; then
-    . ~/.sh_common
-fi
+# common configurations
+[[ -s ~/.sh_common ]] && source ~/.sh_common
 

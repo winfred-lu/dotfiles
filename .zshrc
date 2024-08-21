@@ -92,9 +92,8 @@ Gentoo)
     ;;
 esac
 
-if [ -f ~/.sh_common ]; then
-    source ~/.sh_common
-fi
+# common configurations
+[[ -s ~/.sh_common ]] && source ~/.sh_common
 
 # required to install powerlevel10k zsh theme in advance
 [[ ! -f ~/powerlevel10k.zsh-theme ]] || source ~/powerlevel10k.zsh-theme
