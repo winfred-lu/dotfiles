@@ -1,11 +1,12 @@
 # -*- mode: sh -*-
 # vim: filetype=sh
 
-export PATH="$PATH:/sbin:/usr/sbin:"
+export PATH="$PATH:/sbin:/usr/sbin"
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin"
 export PATH="$PATH:/usr/lib/cargo/bin"
 export PATH="$PATH:/usr/local/nvim-linux64/bin"
-export PATH="$PATH:$HOME/.local/bin:$HOME/bin:./"
+export PATH="$PATH:$HOME/anaconda3/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
 
 export EDITOR="vim"
 export ALTERNATE_EDITOR=""    # for emacsclient
@@ -81,6 +82,8 @@ unfunction grep-flag-available
 # alias grep since GREP_OPTIONS is deprecated
 alias grep="grep $GREP_OPTIONS"
 
+# Rust env
+. "$HOME/.cargo/env"
 
 # company specific settings
 [[ -s ~/.company.conf ]] && source ~/.company.conf
