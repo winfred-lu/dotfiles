@@ -1,9 +1,24 @@
 vim.g.mapleader = ","
 vim.g.mapllocaleader = " "
 
--- for netrw-gx under Windows and WSL
+-- under Windows and WSL
 if IS_WINDOWS or IS_WSL then
+  -- for netrw-gw
   vim.g.netrw_browsex_viewer = "cmd.exe /C start"
+
+  -- to copy to or paste from win32 cilpboard
+  vim.g.clipboard = {
+    name = "win32yank-wsl",
+    copy = {
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
+    },
+    paste = {
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
+    },
+    cache_enabled = false,
+  }
 end
 
 vim.opt.mousemodel = "popup"
